@@ -68,6 +68,7 @@ void vertex()
 	vec2 pos = TRANSFORM[3].xy;
 	if (RESTART)
 	{
+		TRANSFORM[3].xy = start_point * vec2(1024,600);
 		CUSTOM.x = 1f;
 		CUSTOM.y = spawn_angle_base + clamp(random(vec2(float(INDEX))) * 2f * 3.14159,-spawn_angle_clamp,spawn_angle_clamp);
 		CUSTOM.z= 1f;
@@ -217,8 +218,9 @@ color = Color( 0, 0, 0, 1 )
 position = Vector2( 101, 213 )
 emitting = false
 amount = 80000
-lifetime = 10.0
+lifetime = 20.0
 randomness = 1.0
+local_coords = false
 process_material = SubResource( 4 )
 script = ExtResource( 2 )
 startpath = "Player"
