@@ -1,7 +1,7 @@
 extends Node
 
 var current_scene = null
-var scene_names = ["red","green","blue"]
+var scene_names = ["red","green","blue","FloorRendert"]
 var index = 0
 var player = Vector2.ZERO;
 

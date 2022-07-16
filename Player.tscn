@@ -29,7 +29,7 @@ void fragment() {
 shader = SubResource( 6 )
 shader_param/radius = 4.0
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=8]
 code = "shader_type canvas_item;
 
 uniform float blur_amount : hint_range(0, 5);
@@ -39,7 +39,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
+shader = SubResource( 8 )
 shader_param/blur_amount = 0.052
 
 [node name="Player" type="KinematicBody2D"]

@@ -162,8 +162,8 @@ shader_param/turnStrength = 800.0
 shader_param/bezier_curve_point = Vector2( 0.647461, 0.503333 )
 shader_param/bezier_control_point = Vector2( 0.524414, 0.44 )
 shader_param/bezier_control2_point = Vector2( 0.746094, 0.483333 )
-shader_param/start_point = Vector2( 0.0986328, 0.355 )
-shader_param/species_odds = Vector3( 1, 0, 0 )
+shader_param/start_point = Vector2( 0.244141, 0.533333 )
+shader_param/species_odds = Vector3( 0, 0, 0 )
 shader_param/spawn_angle_base = 6.579
 shader_param/spawn_angle_clamp = 0.0
 shader_param/last = SubResource( 3 )
@@ -215,7 +215,7 @@ margin_bottom = 600.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Particles2D" type="Particles2D" parent="Viewport"]
-position = Vector2( 101, 213 )
+position = Vector2( 250, 320 )
 emitting = false
 amount = 80000
 lifetime = 20.0
@@ -226,7 +226,7 @@ script = ExtResource( 2 )
 startpath = "Player"
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 101, 213 )
+position = Vector2( 250, 320 )
 
 [node name="Timer" type="Timer" parent="Player"]
 
@@ -242,7 +242,7 @@ position = Vector2( 537, 264 )
 position = Vector2( 764, 290 )
 
 [node name="Start" type="Position2D" parent="."]
-position = Vector2( 512, 300 )
+position = Vector2( 505, 456 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 8 )

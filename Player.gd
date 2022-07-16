@@ -47,6 +47,7 @@ func _input(event):
 		if event.pressed and canshoot:
 			parts.emitting = true
 			$Timer.start(shot_duration)
+			canshoot = false
 
 
 func _on_Timer_timeout():
