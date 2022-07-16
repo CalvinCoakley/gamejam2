@@ -5,10 +5,15 @@ export var friction = 0.01
 export var acceleration = 0.1
 export var timer_cooldown = 0.1
 export var shot_duration = 0.1
+export(Vector2) var  mid_pos = Vector2(418,276);
 
 var canshoot = true
 
-onready var parts = get_parent().get_node("Viewport/Particles2D")
+onready var parts = get_parent().get_node_or_null("Viewport/Particles2D")
+
+func _ready():
+	if Global.player != Vector2.ZERO:
+		position = Global.player
 
 var velocity = Vector2()
 
@@ -28,11 +33,16 @@ func _physics_process(delta):
 	
 	look_at(get_global_mouse_position())
 	rotation_degrees += 90
+	
 
 func _process(delta):
+	if parts == null:
+		return
 	parts.process_material.set_shader_param("spawn_angle_base",rotation - deg2rad(90))
 
 func _input(event):
+	if parts == null:
+		return
 	if event is InputEventMouseButton:
 		if event.pressed and canshoot:
 			parts.emitting = true

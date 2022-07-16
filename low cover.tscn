@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://low-cover room.png" type="Texture" id=2]
+[ext_resource path="res://biggest_door_please_i_beg_you_help_im_locked_in_lottaaxols_basement.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.5, 40.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.25, 40.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 13.5, 298 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 13.5, 298 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 512.5, 14.75 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 15.75, 79.75 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 514, 302 )
+scale = Vector2( 7.96875, 9.34375 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D" type="Area2D" parent="."]
+position = Vector2( 979, 317 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+modulate = Color( 1, 0.992157, 0.992157, 1 )
+position = Vector2( 9.49997, 6.5 )
+scale = Vector2( 0.54762, 0.403226 )
+texture = ExtResource( 3 )
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 13.5, 7.5 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="Area2D" parent="."]
+position = Vector2( 198, 646 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D2"]
+modulate = Color( 0.992157, 1, 1, 1 )
+position = Vector2( -158.25, -387.667 )
+scale = Vector2( 0.583333, 0.426523 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( -163.5, -386.5 )
+shape = SubResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 418, 276 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( 12.5, 298 )
+shape = SubResource( 3 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2( 1012, 298 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2( 515.5, 15.25 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2( 513, 579 )
+shape = SubResource( 5 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2( 486, 108 )
+shape = SubResource( 6 )
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2( 487, 485 )
+shape = SubResource( 6 )
