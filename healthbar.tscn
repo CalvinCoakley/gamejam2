@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://theme.tres" type="Theme" id=1]
+[ext_resource path="res://healthbar.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.956863, 0.0431373, 0.8, 1 )
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.6, 0.6, 0.619608, 0 )
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color( 0.996078, 0.988235, 0.988235, 1 )
+
+[node name="ProgressBar" type="ProgressBar"]
+margin_left = -415.0
+margin_top = -273.0
+margin_right = -67.0
+margin_bottom = -244.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.0431373, 0.764706, 0.956863, 1 )
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
+value = 50.0
+percent_visible = false
+script = ExtResource( 2 )

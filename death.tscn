@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="ImageTexture" id=2]
+size = Vector2( 2048, 6 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 3
+emission_point_texture = SubResource( 2 )
+emission_point_count = 10554
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 448, 379 )
+amount = 18000
+lifetime = 0.2
+process_material = SubResource( 1 )

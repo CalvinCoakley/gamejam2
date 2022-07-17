@@ -1,5 +1,9 @@
 extends Control
 
-func _on_Button_Pressed():
-	get_tree().change_scene("res://blue.tscn")
+func _ready():
+	Music.play_menu()
 
+
+func _on_button_pressed():
+	Global.goto_scene("blue")
+	Music.play_di()
