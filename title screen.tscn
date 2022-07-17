@@ -160,25 +160,25 @@ material = SubResource( 2 )
 margin_right = 1024.0
 margin_bottom = 600.0
 
-[node name="start game" type="Button" parent="."]
-margin_left = 323.0
-margin_top = 328.0
-margin_right = 832.0
-margin_bottom = 348.0
-flat = true
-
-[node name="Label" type="Label" parent="start game"]
+[node name="Label3" type="Label" parent="."]
 material = SubResource( 10 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1795.0
-margin_top = -57.0
-margin_right = -1304.0
-margin_bottom = 943.0
+margin_left = -2523.0
+margin_top = -325.0
+margin_right = -2032.0
+margin_bottom = 675.0
 rect_scale = Vector2( 4, 4 )
 text = "Start Game"
 align = 1
+
+[node name="start game" type="Button" parent="."]
+margin_left = 279.0
+margin_top = 294.0
+margin_right = 788.0
+margin_bottom = 314.0
+flat = true
 
 [node name="Label2" type="Label" parent="."]
 material = SubResource( 11 )
