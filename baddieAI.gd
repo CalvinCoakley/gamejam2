@@ -68,7 +68,7 @@ func shoot():
 		instance.global_position = global_position
 		instance.angle = rotation- deg2rad(90)
 		get_parent().add_child(instance)
-		$Timer.start(shot_duration)
+		$Timer2.start(timer_cooldown)
 		canshoot = false
 
 
