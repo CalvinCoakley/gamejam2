@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Environment" id=11]
+background_mode = 4
+ambient_light_sky_contribution = 0.37
+ssao_radius = 13.3
+glow_enabled = true
+glow_strength = 0.38
+glow_bloom = 0.41
+adjustment_enabled = true
+adjustment_saturation = 1.31
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource( 11 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.313726, 0.25098, 0.25098, 1 )
