@@ -144,6 +144,7 @@ texture = SubResource( 10 )
 
 [node name="Enemy" parent="Node2D" index="1"]
 position = Vector2( 648, 339 )
+rotation = -2.32498
 player = NodePath("../../Player")
 
 [connection signal="body_entered" from="StaticBody2D" to="." method="_on_StaticBody2D_body_entered"]

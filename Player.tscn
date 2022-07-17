@@ -43,14 +43,12 @@ shader = SubResource( 4 )
 shader_param/blur_amount = 0.052
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( -1, -7 )
 script = ExtResource( 1 )
 speed = 350
 friction = 0.2
 acceleration = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.5 )
 shape = SubResource( 7 )
 
 [node name="Icon" type="Sprite" parent="."]

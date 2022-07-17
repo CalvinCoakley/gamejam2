@@ -20,9 +20,10 @@ texture = SubResource( 6 )
 script = ExtResource( 3 )
 movespeed = 100.0
 distancekeep = 100.0
-distancekeep2 = 200.0
+distancekeep2 = 250.0
 acceleration = 0.1
 friction = 0.1
+health = 6
 timer_cooldown = 1.0
 
 [node name="RayCast2D" type="RayCast2D" parent="Enemy"]
