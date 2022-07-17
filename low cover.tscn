@@ -1,0 +1,222 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://low-cover room.png" type="Texture" id=2]
+[ext_resource path="res://biggest_door_please_i_beg_you_help_im_locked_in_lottaaxols_basement.png" type="Texture" id=3]
+[ext_resource path="res://healthbar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://light.png" type="Texture" id=5]
+[ext_resource path="res://scence.gd" type="Script" id=6]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.5, 40.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.25, 40.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 13.5, 298 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 13.5, 298 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 512.5, 14.75 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 15.75, 79.75 )
+
+[sub_resource type="OccluderPolygon2D" id=9]
+polygon = PoolVector2Array( 185.892, 250.308, 209.614, 267.108, 131.511, 401.026, 99.5426, 386.227 )
+
+[sub_resource type="ViewportTexture" id=10]
+viewport_path = NodePath("Node2D/Viewport")
+
+[sub_resource type="ViewportTexture" id=11]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ViewportTexture" id=12]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ViewportTexture" id=13]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ViewportTexture" id=14]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ViewportTexture" id=15]
+viewport_path = NodePath("Viewport")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 6 )
+entrance_pos = Vector2( 200, 307 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 514, 302 )
+scale = Vector2( 7.96875, 9.34375 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D" type="Area2D" parent="."]
+position = Vector2( 975, 316 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+modulate = Color( 1, 0.992157, 0.992157, 1 )
+position = Vector2( 9.49997, 6.5 )
+scale = Vector2( 0.54762, 0.403226 )
+texture = ExtResource( 3 )
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 13.5, 7.5 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="Area2D" parent="."]
+position = Vector2( 37, 307 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D2"]
+modulate = Color( 0.992157, 1, 1, 1 )
+scale = Vector2( 0.583333, 0.426523 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource( 2 )
+
+[node name="ProgressBar" parent="." instance=ExtResource( 4 )]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 351.0
+margin_bottom = 32.0
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 418, 276 )
+scale = Vector2( 0.989106, 1.15467 )
+timer_cooldown = 0.3
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( 12.5, 298 )
+shape = SubResource( 3 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2( 1012, 298 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2( 515.5, 15.25 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2( 513, 579 )
+shape = SubResource( 5 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2( 486, 108 )
+shape = SubResource( 6 )
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2( 487, 485 )
+shape = SubResource( 6 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 841, 307 )
+rotation = -3.69458
+texture = ExtResource( 5 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2( 183, 287 )
+rotation = -0.54734
+occluder = SubResource( 9 )
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+position = Vector2( 181, -89 )
+rotation = -0.54734
+occluder = SubResource( 9 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 183, 287 )
+rotation = -6.83053
+texture = ExtResource( 5 )
+
+[node name="Node2D" parent="." instance=ExtResource( 7 )]
+
+[node name="Sprite2" parent="Node2D" index="0"]
+position = Vector2( -347, -47 )
+texture = SubResource( 10 )
+
+[node name="Enemy" parent="Node2D" index="1"]
+position = Vector2( 648, 339 )
+player = NodePath("../../Player")
+
+[node name="Sprite" parent="Node2D/Enemy" index="1"]
+position = Vector2( -6.00001, -8 )
+scale = Vector2( 0.0335484, 0.0457517 )
+
+[node name="Node2D2" parent="." instance=ExtResource( 7 )]
+
+[node name="Sprite2" parent="Node2D2" index="0"]
+texture = SubResource( 11 )
+
+[node name="Enemy" parent="Node2D2" index="1"]
+position = Vector2( 249, 412 )
+player = NodePath("../../Player")
+
+[node name="Node2D" parent="Node2D2" instance=ExtResource( 7 )]
+
+[node name="Sprite2" parent="Node2D2/Node2D" index="0"]
+texture = SubResource( 12 )
+
+[node name="Enemy" parent="Node2D2/Node2D" index="1"]
+position = Vector2( 317, 136 )
+player = NodePath("../../../Player")
+
+[node name="Node2D" parent="Node2D2/Node2D" instance=ExtResource( 7 )]
+
+[node name="Sprite2" parent="Node2D2/Node2D/Node2D" index="0"]
+texture = SubResource( 13 )
+
+[node name="Enemy" parent="Node2D2/Node2D/Node2D" index="1"]
+position = Vector2( 757, 140 )
+player = NodePath("../../../../Player")
+
+[node name="Node2D" parent="Node2D2/Node2D/Node2D" instance=ExtResource( 7 )]
+
+[node name="Sprite2" parent="Node2D2/Node2D/Node2D/Node2D" index="0"]
+texture = SubResource( 14 )
+
+[node name="Enemy" parent="Node2D2/Node2D/Node2D/Node2D" index="1"]
+position = Vector2( 808, 474 )
+player = NodePath("../../../../../Player")
+
+[node name="Node2D" parent="Node2D2/Node2D/Node2D/Node2D" instance=ExtResource( 7 )]
+
+[node name="Sprite2" parent="Node2D2/Node2D/Node2D/Node2D/Node2D" index="0"]
+texture = SubResource( 15 )
+
+[node name="Enemy" parent="Node2D2/Node2D/Node2D/Node2D/Node2D" index="1"]
+position = Vector2( 148, 177 )
+player = NodePath("../../../../../../Player")
+
+[connection signal="body_entered" from="StaticBody2D" to="." method="_on_StaticBody2D_body_entered"]
+[connection signal="body_entered" from="StaticBody2D2" to="." method="_on_StaticBody2D2_body_entered"]
+
+[editable path="Node2D"]
+[editable path="Node2D2"]
+[editable path="Node2D2/Node2D"]
+[editable path="Node2D2/Node2D/Node2D"]
+[editable path="Node2D2/Node2D/Node2D/Node2D"]
+[editable path="Node2D2/Node2D/Node2D/Node2D/Node2D"]
