@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://biggest_door_please_i_beg_you_help_im_locked_in_lottaaxols_basement.png" type="Texture" id=2]
@@ -6,8 +6,6 @@
 [ext_resource path="res://theme.tres" type="Theme" id=4]
 [ext_resource path="res://light.png" type="Texture" id=5]
 [ext_resource path="res://scence.gd" type="Script" id=6]
-[ext_resource path="res://envi.tscn" type="PackedScene" id=7]
-[ext_resource path="res://BossRoom.gd" type="Script" id=8]
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.956863, 0.0431373, 0.8, 1 )
@@ -46,30 +44,42 @@ polygon = PoolVector2Array( 603.021, -13.0579, 567.538, 0.578949, 484.44, -35.32
 [sub_resource type="OccluderPolygon2D" id=10]
 polygon = PoolVector2Array( -30.2379, 250.722, -57.2504, 258.68, -80.3905, 249.875, -236.705, -139.985, -235.289, -160.06, -201.496, -175.161, -117.248, -136.491, 4.42285, 172.469 )
 
+[sub_resource type="Environment" id=11]
+background_mode = 4
+background_energy = 3.33
+ambient_light_color = Color( 0.780392, 1, 0, 1 )
+ambient_light_energy = 2.31
+ssao_enabled = true
+ssao_radius = 13.3
+glow_enabled = true
+glow_intensity = 2.18
+glow_blend_mode = 0
+adjustment_enabled = true
+adjustment_saturation = 1.31
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 6 )
-entrance_pos = Vector2( 1124, 1902 )
+entrance_pos = Vector2( -620, -1350 )
 
 [node name="BossRoom" type="Sprite" parent="."]
 position = Vector2( 511, 297.5 )
 scale = Vector2( 8, 9.35938 )
 texture = ExtResource( 3 )
-script = ExtResource( 8 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 505, 511 )
-
-[node name="ProgressBar" type="ProgressBar" parent="Player"]
-margin_left = -503.0
-margin_top = -507.0
-margin_right = -155.0
-margin_bottom = -478.0
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = 2.0
+margin_top = 4.0
+margin_right = 350.0
+margin_bottom = 33.0
 theme = ExtResource( 4 )
 custom_colors/font_color = Color( 0.0431373, 0.764706, 0.956863, 1 )
 custom_styles/fg = SubResource( 7 )
 custom_styles/bg = SubResource( 8 )
 value = 50.0
 percent_visible = false
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 505, 511 )
 
 [node name="StaticBody2D2" type="Area2D" parent="."]
 position = Vector2( 1124, 1902 )
@@ -151,4 +161,8 @@ position = Vector2( 734, 419 )
 rotation = 3.14159
 polygon = PoolVector2Array( -1, 2, -5, 419, 14, 437, 46, 440, 105, 378, 107, 49, 47, -18, 8, -20 )
 
-[node name="WorldEnvironment" parent="." instance=ExtResource( 7 )]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 11 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="WorldEnvironment"]
+color = Color( 0.313726, 0.25098, 0.25098, 1 )
