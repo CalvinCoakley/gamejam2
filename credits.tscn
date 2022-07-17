@@ -1,0 +1,31 @@
+[gd_scene format=2]
+
+[node name="credits" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 1.40154, 2.19264 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 18.2518, 6.86507 )
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 323.0
+margin_bottom = 252.0
+rect_scale = Vector2( 2.25046, 1.08161 )
+text = "
+CREATED BY: NEWELL W. SMITH GAME INDUSTRIES
+
+LEAD PROGRAMMER: PeppaFan666
+
+ADDITIONAL PROGRAMMING:
+Loattaaxolotl
+
+SPRITISTS: 
+Goldy,
+Gravitational_pies
+
+MORAL SUPPORT:
+Tplu"
