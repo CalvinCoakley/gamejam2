@@ -1,7 +1,7 @@
 extends Node
 
 var current_scene = null
-var scene_names = ["red","green","blue"]
+var scene_names = ["red","green","blue","hallway","boss", "low cover", "chest"]
 var index = 0
 var player = Vector2.ZERO;
 
@@ -13,7 +13,6 @@ func shuffleList(list):
 		shuffledList.append(list[indexList[x]])
 		indexList.remove(x)
 	return shuffledList
-
 
 
 func _ready():

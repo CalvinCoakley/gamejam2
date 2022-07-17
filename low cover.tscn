@@ -1,15 +1,31 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://low-cover room.png" type="Texture" id=2]
 [ext_resource path="res://biggest_door_please_i_beg_you_help_im_locked_in_lottaaxols_basement.png" type="Texture" id=3]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://theme.tres" type="Theme" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.5, 40.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8.25, 40.5 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.956863, 0.0431373, 0.8, 1 )
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.6, 0.6, 0.619608, 0 )
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color( 0.996078, 0.988235, 0.988235, 1 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 13.5, 298 )
@@ -22,170 +38,6 @@ extents = Vector2( 512.5, 14.75 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 15.75, 79.75 )
-
-[sub_resource type="ViewportTexture" id=8]
-viewport_path = NodePath("Node2D/Viewport")
-
-[sub_resource type="Shader" id=7]
-code = "shader_type particles;
-
-uniform float speed;
-uniform vec4 color_1 : hint_color;
-uniform vec4 color_2 : hint_color;
-uniform vec4 color_3 : hint_color;
-uniform vec4 color_4 : hint_color;
-uniform float sensorOffsetDst;
-uniform int sensorSize;
-uniform float sensorAngleSpacing;
-uniform sampler2D last;
-uniform float turnSpeed;
-uniform float turnStrength;
-uniform vec2 bezier_curve_point;
-uniform vec2 bezier_control_point;
-uniform vec2 bezier_control2_point;
-uniform vec2 start_point;
-uniform vec3 species_odds;
-uniform float spawn_angle_base;
-uniform float spawn_angle_clamp;
-
-float random(vec2 uv) {
-    return fract(sin(dot(uv.xy,
-        vec2(12.9898,78.233))) *
-            43758.5453123);
-}
-
-vec2 toBezier(float t, vec2 P0, vec2 P1, vec2 P2, vec2 P3)
-{
-    float t2 = t * t;
-    float one_minus_t = 1.0 - t;
-    float one_minus_t2 = one_minus_t * one_minus_t;
-    return (P0 * one_minus_t2 * one_minus_t + P1 * 3.0 * t * one_minus_t2 + P2 * 3.0 * t2 * one_minus_t + P3 * t2 * t);
-}
-
-float sense(float sensorAngleOffset,vec4 cus,mat4 trans) {
-	float sensorAngle = cus.x + sensorAngleOffset;
-	vec2 sensorDir = vec2(cos(sensorAngle), sin(sensorAngle));
-	vec2 sensorCenter = trans[3].xy + sensorDir * sensorOffsetDst;
-	//sensorCenter /= vec2(1024,600);
-	float sum = 0f;
-	for (int offsetX = -sensorSize; offsetX <= sensorSize; offsetX ++) {
-		for (int offsetY = -sensorSize; offsetY <= sensorSize; offsetY ++) {
-			float sampleX = sensorCenter.x + float(offsetX);
-			float sampleY = sensorCenter.y + float(offsetY);
-			vec4 res = texture(last,vec2(sampleX,sampleY));
-			if (res == color_1)
-			{
-				sum+=1f;
-			}
-		}
-	}
-
-	return sum;
-}
-void vertex()
-{
-	vec2 pos = TRANSFORM[3].xy;
-	if (RESTART)
-	{
-		TRANSFORM[3].xy = start_point * vec2(1024,600);
-		CUSTOM.x = 1f;
-		CUSTOM.y = spawn_angle_base + clamp(random(vec2(float(INDEX))) * 2f * 3.14159,-spawn_angle_clamp,spawn_angle_clamp);
-		CUSTOM.z= 1f;
-	}
-	else if(CUSTOM.z == 1f)
-	{
-		CUSTOM.x = 0f;
-		float noise = random(pos);
-		if(noise < species_odds.x)
-		{
-			CUSTOM.x = 1f;
-			COLOR = color_1;
-		}
-		else if (noise < species_odds.y)
-		{
-			CUSTOM.x = 2f;
-			COLOR = color_2;
-		}
-		else if(noise < species_odds.z)
-		{
-			CUSTOM.x = 3f;
-			COLOR = color_3;
-		}
-		else
-		{
-			CUSTOM.x = 4f;
-			COLOR = color_4;
-		}
-		
-		CUSTOM.z = 2f;
-	}
-	if (CUSTOM.x == 1f)
-	{
-		VELOCITY.xy = vec2(cos(CUSTOM.y),sin(CUSTOM.y)) * speed;
-	}
-	if (CUSTOM.x == 2f)
-	{
-	float weightForward = sense(0f,CUSTOM,TRANSFORM);
-	float weightLeft = sense(sensorAngleSpacing,CUSTOM,TRANSFORM);
-	float weightRight = sense(-sensorAngleSpacing,CUSTOM,TRANSFORM);
-	
-	float randomSteerStrength = random(pos);
-	//continue
-	if(weightForward > weightLeft && weightForward > weightRight)
-	{
-		CUSTOM.y += 0f;
-	}
-	//random
-	else if (weightForward < weightLeft && weightForward < weightRight)
-	{
-		CUSTOM.y += (randomSteerStrength - 0.5) * 2f * turnSpeed * DELTA * turnStrength;
-	}
-	//turn right
-	else if (weightRight > weightLeft)
-	{
-		CUSTOM.y += randomSteerStrength * turnSpeed * DELTA * turnStrength;
-	}
-	//turn left
-	else if (weightLeft > weightRight)
-	{
-		CUSTOM.x -= randomSteerStrength * turnSpeed * DELTA * turnStrength;
-	}
-		VELOCITY.xy = vec2(cos(CUSTOM.y),sin(CUSTOM.y)) * speed * (.75f + ((weightForward + weightLeft + weightRight)/60000f));
-	}
-	else if(CUSTOM.x == 3f)
-	{
-		CUSTOM.w += 0.01f;
-		//CUSTOM.w = clamp(CUSTOM.w,0f,1f);
-		vec2 newPos = toBezier(CUSTOM.w,start_point,bezier_control_point,bezier_control2_point,bezier_curve_point);
-		VELOCITY.xy = pos - newPos;
-	}
-	
-}"
-
-[sub_resource type="ViewportTexture" id=9]
-viewport_path = NodePath("Viewport")
-
-[sub_resource type="ShaderMaterial" id=10]
-resource_local_to_scene = true
-shader = SubResource( 7 )
-shader_param/speed = 320.0
-shader_param/color_1 = Color( 1, 0, 0, 1 )
-shader_param/color_2 = Color( 0, 1, 0.27451, 1 )
-shader_param/color_3 = Color( 0.0784314, 0, 1, 1 )
-shader_param/color_4 = Color( 1, 0, 0.819608, 1 )
-shader_param/sensorOffsetDst = 10.0
-shader_param/sensorSize = 90
-shader_param/sensorAngleSpacing = 45.0
-shader_param/turnSpeed = 800.0
-shader_param/turnStrength = 800.0
-shader_param/bezier_curve_point = Vector2( 0.647461, 0.503333 )
-shader_param/bezier_control_point = Vector2( 0.524414, 0.44 )
-shader_param/bezier_control2_point = Vector2( 0.746094, 0.483333 )
-shader_param/start_point = Vector2( 0.158203, 0.571667 )
-shader_param/species_odds = Vector3( 1, 0, 0 )
-shader_param/spawn_angle_base = -1.581
-shader_param/spawn_angle_clamp = 0.0
-shader_param/last = SubResource( 9 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -230,6 +82,18 @@ shape = SubResource( 2 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 418, 276 )
 
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+margin_left = -415.0
+margin_top = -273.0
+margin_right = -67.0
+margin_bottom = -244.0
+theme = ExtResource( 4 )
+custom_colors/font_color = Color( 0.0431373, 0.764706, 0.956863, 1 )
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
+value = 50.0
+percent_visible = false
+
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
@@ -263,18 +127,3 @@ shape = SubResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
 position = Vector2( 487, 485 )
 shape = SubResource( 6 )
-
-[node name="Node2D" parent="." instance=ExtResource( 4 )]
-
-[node name="Sprite2" parent="Node2D" index="0"]
-texture = SubResource( 8 )
-
-[node name="Particles2D" parent="Node2D/Viewport" index="1"]
-position = Vector2( 162, 343 )
-process_material = SubResource( 10 )
-
-[node name="Enemy" parent="Node2D" index="2"]
-position = Vector2( 162, 343 )
-player = NodePath("../../Player")
-
-[editable path="Node2D"]
