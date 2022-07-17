@@ -45,9 +45,9 @@ shader_param/blur_amount = 0.052
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( -1, -7 )
 script = ExtResource( 1 )
-speed = 500
-friction = 0.1
-acceleration = 0.2
+speed = 350
+friction = 0.2
+acceleration = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -0.5 )
@@ -70,6 +70,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 100000.0
 
 [node name="Timer2" type="Timer" parent="."]
 
