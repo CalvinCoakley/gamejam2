@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://biggest_door_please_i_beg_you_help_im_locked_in_lottaaxols_basement.png" type="Texture" id=1]
 [ext_resource path="res://scence.gd" type="Script" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://cover room.png" type="Texture" id=4]
 [ext_resource path="res://theme.tres" type="Theme" id=5]
+[ext_resource path="res://light.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.25, 40.5 )
@@ -40,8 +41,18 @@ extents = Vector2( 199.75, 47.5 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 158.5, 127 )
 
+[sub_resource type="OccluderPolygon2D" id=9]
+polygon = PoolVector2Array( -73.4357, 399.109, -104.914, 434.026, -417.449, 137.231, -392.31, 103.216 )
+
+[sub_resource type="OccluderPolygon2D" id=11]
+polygon = PoolVector2Array( 684, 31, 683, 291, 991, 286, 996, 27 )
+
+[sub_resource type="OccluderPolygon2D" id=10]
+polygon = PoolVector2Array( 203, 178, 604, 177, 604, 269, 201, 270 )
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
+entrance_pos = Vector2( 198, 646 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 511.5, 299 )
@@ -135,6 +146,27 @@ shape = SubResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D8"]
 position = Vector2( 842.5, 153 )
 shape = SubResource( 6 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 730, 402 )
+rotation = 2.13704
+texture = ExtResource( 6 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2( 469, 242 )
+rotation = 0.815866
+occluder = SubResource( 9 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 469, 242 )
+rotation = 0.815866
+texture = ExtResource( 6 )
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+occluder = SubResource( 11 )
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+occluder = SubResource( 10 )
 
 [connection signal="area_entered" from="StaticBody2D" to="." method="_on_StaticBody2D_area_entered"]
 [connection signal="body_entered" from="StaticBody2D" to="." method="_on_StaticBody2D_body_entered"]

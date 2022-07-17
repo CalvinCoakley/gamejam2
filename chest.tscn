@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://starting_room.png" type="Texture" id=2]
 [ext_resource path="res://biggest_door_please_i_beg_you_help_im_locked_in_lottaaxols_basement.png" type="Texture" id=3]
 [ext_resource path="res://theme.tres" type="Theme" id=4]
+[ext_resource path="res://light.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.956863, 0.0431373, 0.8, 1 )
@@ -96,3 +97,8 @@ shape = SubResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
 position = Vector2( 513, 580 )
 shape = SubResource( 4 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 790, 304 )
+rotation = 2.56533
+texture = ExtResource( 5 )
