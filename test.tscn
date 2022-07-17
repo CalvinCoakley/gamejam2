@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.5, 508 )
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=10]
 code = "shader_type particles;
 
 uniform float speed;
@@ -143,12 +143,12 @@ void vertex()
 	
 }"
 
-[sub_resource type="ViewportTexture" id=3]
+[sub_resource type="ViewportTexture" id=11]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
-shader = SubResource( 2 )
+shader = SubResource( 10 )
 shader_param/speed = 320.0
 shader_param/color_1 = Color( 1, 0, 0, 1 )
 shader_param/color_2 = Color( 0, 1, 0.27451, 1 )
@@ -166,7 +166,7 @@ shader_param/start_point = Vector2( 0.0986328, 0.355 )
 shader_param/species_odds = Vector3( 1, 0, 0 )
 shader_param/spawn_angle_base = 6.579
 shader_param/spawn_angle_clamp = 0.0
-shader_param/last = SubResource( 3 )
+shader_param/last = SubResource( 11 )
 
 [sub_resource type="ViewportTexture" id=7]
 viewport_path = NodePath("Viewport")
