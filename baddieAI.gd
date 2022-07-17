@@ -1,16 +1,19 @@
 extends KinematicBody2D
 
 var scene = preload("res://projectile.tscn")
+var scene2 = preload("res://circle_collider.tscn")
 
 export(float) var movespeed
 export(float) var distancekeep
 export(float) var distancekeep2
 export(float) var acceleration
 export(float) var friction
+export(int) var attack_type = 0
 export(int) var health = 4
 export var timer_cooldown = 0.1
 export var shot_duration = 0.1
 export(NodePath) var player
+
 
 var angle = 0
 var seesplayer = false
@@ -64,12 +67,21 @@ func shoot():
 		#return
 	if canshoot:
 		#parts.emitting = true
-		var instance = scene.instance()
-		instance.global_position = global_position
-		instance.angle = rotation- deg2rad(90)
-		get_parent().add_child(instance)
-		$Timer2.start(timer_cooldown)
-		canshoot = false
+		if attack_type == 0:
+			var instance = scene.instance()
+			instance.global_position = global_position
+			instance.angle = rotation- deg2rad(90)
+			get_parent().add_child(instance)
+			$Timer2.start(timer_cooldown)
+			canshoot = false
+		if attack_type == 1:
+			var instance = scene2.instance()
+			#instance.global_position = global_position
+			#instance.angle = rotation- deg2rad(90)
+			add_child(instance)
+			$Timer2.start(timer_cooldown)
+			canshoot = false
+			
 
 
 
