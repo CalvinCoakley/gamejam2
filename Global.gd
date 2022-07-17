@@ -40,6 +40,7 @@ func _deferred_goto_scene(path):
 	var s = ResourceLoader.load("res://" + path + ".tscn")
 
 	current_scene = s.instance()
+	player = current_scene.entrance_pos
 	
 
 	get_tree().get_root().add_child(current_scene)
