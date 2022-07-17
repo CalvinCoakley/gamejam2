@@ -1,7 +1,7 @@
 extends Node
 
 var current_scene = null
-var scene_names = ["red","green","hallway","boss","low cover"]
+var scene_names = ["red","green","hallway","low cover"]
 var index = 0
 var player = Vector2.ZERO;
 var player_health = 5
@@ -28,6 +28,7 @@ func _ready():
 	scene_names.shuffle()
 	#scene_names.remove(scene_names.find(basename))
 	scene_names.insert(0,"blue")
+	scene_names.append("boss")
 
 func goto_scene(path):
 	#index = scene_names.find(path)

@@ -38,6 +38,8 @@ func _physics_process(delta):
 	
 
 func _process(_delta):
+	if Global.player_health <= 0:
+		Global.goto_scene("death")
 	if parts == null:
 		return
 	parts.process_material.set_shader_param("spawn_angle_base",rotation - deg2rad(90))

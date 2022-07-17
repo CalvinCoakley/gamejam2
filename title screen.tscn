@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://title screen.gd" type="Script" id=1]
 [ext_resource path="res://title.png" type="Texture" id=2]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=13]
 code = "shader_type canvas_item;
 
 uniform sampler2D color;
@@ -20,26 +20,26 @@ void fragment()
 [sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 0.172363, 0.0807953, 0.126132, 1, 0.355957, 0.260015, 0.260015, 1 )
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture" id=14]
 gradient = SubResource( 3 )
 
 [sub_resource type="OpenSimplexNoise" id=5]
 
-[sub_resource type="NoiseTexture" id=6]
+[sub_resource type="NoiseTexture" id=15]
 noise = SubResource( 5 )
 
 [sub_resource type="OpenSimplexNoise" id=7]
 
-[sub_resource type="NoiseTexture" id=8]
+[sub_resource type="NoiseTexture" id=16]
 noise = SubResource( 7 )
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/color = SubResource( 4 )
-shader_param/noise = SubResource( 6 )
-shader_param/noise2 = SubResource( 8 )
+shader = SubResource( 13 )
+shader_param/color = SubResource( 14 )
+shader_param/noise = SubResource( 15 )
+shader_param/noise2 = SubResource( 16 )
 
-[sub_resource type="Shader" id=9]
+[sub_resource type="Shader" id=17]
 code = "shader_type canvas_item;
 
 uniform vec2 fill_tex_offset = vec2(0.0);
@@ -74,7 +74,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
+shader = SubResource( 17 )
 shader_param/fill_tex_offset = Vector2( 0, 0 )
 shader_param/fill_tex_scale = Vector2( 1, 1 )
 shader_param/base_color = Color( 0.454902, 0.454902, 0.235294, 1 )
@@ -85,8 +85,42 @@ shader_param/height = 1.0
 shader_param/frequency = 20.0
 shader_param/speed = 5.0
 
+[sub_resource type="Shader" id=18]
+code = "shader_type canvas_item;
+
+uniform vec2 fill_tex_offset = vec2(0.0);
+uniform vec2 fill_tex_scale = vec2(1.0);
+uniform sampler2D fill_tex;
+uniform vec4 base_color: hint_color = vec4(1.0,1.0,0.0,1.0);
+uniform vec4 fill_brighten_color: hint_color = vec4(0.0,0.0,1.0,0.2);
+uniform float cutoff: hint_range(0.0,1.0) = 0.5;
+uniform vec4 outline_color: hint_color = vec4(1.0,0.0,0.0,1.0);
+
+
+uniform float height = 3.0;
+uniform float frequency = 20.0;
+uniform float speed = 3.0;
+
+void vertex() {
+ VERTEX.y += height * sin((frequency * UV.x) + (speed * TIME));
+}
+
+void fragment() {
+	vec4 fill_tex_color = texture(fill_tex, (UV + fill_tex_offset) * fill_tex_scale);
+	
+	vec4 fill_tex_color_new = vec4(mix(fill_tex_color,fill_brighten_color,fill_brighten_color.a));
+	vec4 not_working_tex_color = texture(TEXTURE, UV);
+	vec4 own_texture_color = vec4(COLOR.rgb,not_working_tex_color.a); //workaround because DynamicFonts are weird -> need to use COLOR instead of TEXTURE
+	float own_texture_color_cutoff = step(own_texture_color.r,cutoff);
+	
+	vec4 colored_fill = vec4(own_texture_color.rgb * fill_tex_color.a * base_color.rgb,own_texture_color.a);
+	vec4 new_colored_fill = vec4(mix(colored_fill.rgb,fill_brighten_color.rgb,fill_brighten_color.a),colored_fill.a);
+	vec3 merged_color = mix(colored_fill.rgb + new_colored_fill.rgb, outline_color.rgb, own_texture_color_cutoff);
+	COLOR = vec4(merged_color,colored_fill.a);
+}"
+
 [sub_resource type="ShaderMaterial" id=11]
-shader = SubResource( 9 )
+shader = SubResource( 18 )
 shader_param/fill_tex_offset = Vector2( 0, 0 )
 shader_param/fill_tex_scale = Vector2( 1, 1 )
 shader_param/base_color = Color( 0.901961, 0.286275, 0.458824, 1 )
@@ -98,7 +132,7 @@ shader_param/frequency = 40.0
 shader_param/speed = 10.0
 
 [sub_resource type="ShaderMaterial" id=12]
-shader = SubResource( 9 )
+shader = SubResource( 18 )
 shader_param/fill_tex_offset = Vector2( 0, 0 )
 shader_param/fill_tex_scale = Vector2( 1, 1 )
 shader_param/base_color = Color( 0.294118, 0.290196, 0.313726, 1 )

@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 export(Vector2) var entrance_pos
 
@@ -30,3 +30,9 @@ func _on_StaticBody2D2_body_entered(_body):
 	#Global.player = get_node("Player").position + get_node("Player").position.direction_to(get_node("StaticBody2D2").position) * playermove
 	Global.index -= 1
 	Global.goto_scene(scene)
+
+
+func _on_start_game_pressed():
+	Global.index = 0
+	Global.player_health = 5
+	Global.goto_scene("blue")
