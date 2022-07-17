@@ -3,7 +3,7 @@ extends KinematicBody2D
 export var speed = 200
 export var friction = 0.01
 export var acceleration = 0.1
-export var timer_cooldown = 0.3
+export var timer_cooldown = 0.1
 export var shot_duration = 0.1
 export(Vector2) var  mid_pos = Vector2(418,276);
 
