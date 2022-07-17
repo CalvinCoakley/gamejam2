@@ -49,9 +49,10 @@ func _input(event):
 			instance.player_target = false
 			instance.global_position = global_position
 			instance.angle = rotation- deg2rad(90)
+			canshoot = false
 			get_parent().add_child(instance)
-			$Timer.start(shot_duration)
-
+			#$Timer.start(shot_duration)
+			$Timer2.start(timer_cooldown)
 
 func _on_Timer_timeout():
 	$Timer2.start(timer_cooldown)
