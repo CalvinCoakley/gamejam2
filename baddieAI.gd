@@ -26,7 +26,7 @@ func _physics_process(delta):
 		if newell:
 			Global.goto_scene("win")
 			#get_node("Node").queue_free()
-		#queue_free()
+		queue_free()
 	var Player = get_node(player)
 	if seesplayer: #hunting
 		look_at(Player.global_position)

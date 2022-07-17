@@ -1,10 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 32, 31.5 )
+[ext_resource path="res://d20_boss_left_side_third_frame.png" type="Texture" id=2]
 
 [sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
@@ -29,6 +26,9 @@ void fragment() {
 shader = SubResource( 6 )
 shader_param/radius = 4.0
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 38, 30 )
+
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
 
@@ -49,14 +49,15 @@ script = ExtResource( 1 )
 speed = 350
 friction = 0.2
 acceleration = 0.4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.5 )
-shape = SubResource( 7 )
+timer_cooldown = 0.5
 
 [node name="Icon" type="Sprite" parent="."]
 material = SubResource( 3 )
+scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 7 )
 
 [node name="Control" type="Control" parent="."]
 visible = false
