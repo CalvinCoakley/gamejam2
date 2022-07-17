@@ -4,7 +4,7 @@
 [ext_resource path="res://starting_room.png" type="Texture" id=2]
 [ext_resource path="res://biggest_door_please_i_beg_you_help_im_locked_in_lottaaxols_basement.png" type="Texture" id=3]
 [ext_resource path="res://theme.tres" type="Theme" id=4]
-[ext_resource path="res://scence.gd" type="Script" id=5]
+[ext_resource path="res://light.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.956863, 0.0431373, 0.8, 1 )
@@ -35,27 +35,26 @@ extents = Vector2( 510.5, 14.5 )
 extents = Vector2( 510.5, 14.5 )
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 513.5, 300.5 )
 scale = Vector2( 16.0156, 9.32813 )
 texture = ExtResource( 2 )
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = 6.0
-margin_top = 5.0
-margin_right = 354.0
-margin_bottom = 34.0
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 418, 276 )
+
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+margin_left = -412.0
+margin_top = -271.0
+margin_right = -64.0
+margin_bottom = -242.0
 theme = ExtResource( 4 )
 custom_colors/font_color = Color( 0.0431373, 0.764706, 0.956863, 1 )
 custom_styles/fg = SubResource( 5 )
 custom_styles/bg = SubResource( 6 )
 value = 50.0
 percent_visible = false
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 418, 276 )
 
 [node name="StaticBody2D" type="Area2D" parent="."]
 position = Vector2( 484, 52 )
@@ -98,3 +97,8 @@ shape = SubResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
 position = Vector2( 513, 580 )
 shape = SubResource( 4 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 790, 304 )
+rotation = 2.56533
+texture = ExtResource( 5 )

@@ -11,12 +11,12 @@ config_version=4
 [application]
 
 config/name="GMTK2022"
-run/main_scene="res://title screen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://Global.gd"
+Music="*res://music.tscn"
 
 [display]
 
