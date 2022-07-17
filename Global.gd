@@ -4,6 +4,7 @@ var current_scene = null
 var scene_names = ["red","green","hallway","boss","low cover"]
 var index = 0
 var player = Vector2.ZERO;
+var player_health = 5
 
 func shuffleList(list):
 	var shuffledList = [] 

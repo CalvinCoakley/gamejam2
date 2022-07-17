@@ -1,10 +1,13 @@
 extends KinematicBody2D
 
+var scene = preload("res://projectile.tscn")
+
 export(float) var movespeed
 export(float) var distancekeep
 export(float) var distancekeep2
 export(float) var acceleration
 export(float) var friction
+export(int) var health = 4
 export var timer_cooldown = 0.1
 export var shot_duration = 0.1
 export(NodePath) var player
@@ -15,6 +18,8 @@ var turn = 1
 var velocity := Vector2.ZERO
 
 func _physics_process(delta):
+	if health <= 0:
+		queue_free()
 	var Player = get_node(player)
 	if seesplayer: #hunting
 		look_at(Player.global_position)
@@ -55,21 +60,28 @@ func _process(delta):
 	parts.process_material.set_shader_param("spawn_angle_base",rotation- deg2rad(90))
 
 func shoot():
-	if parts == null:
-		return
+	#if parts == null:
+		#return
 	if canshoot:
-		parts.emitting = true
+		#parts.emitting = true
+		var instance = scene.instance()
+		instance.global_position = global_position
+		instance.angle = rotation- deg2rad(90)
+		get_parent().add_child(instance)
 		$Timer.start(shot_duration)
 		canshoot = false
 
 
 
 func _on_Timer_timeout():
-	parts.emitting = false
+	#parts.emitting = false
 	$Timer2.start(timer_cooldown)
 
 
 func _on_Timer2_timeout():
 	canshoot = true
+	
+func _ready():
+	add_to_group("Enemies")
 
 

@@ -1,29 +1,13 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://biggest_door_please_i_beg_you_help_im_locked_in_lottaaxols_basement.png" type="Texture" id=2]
 [ext_resource path="res://boss_room.png" type="Texture" id=3]
-[ext_resource path="res://theme.tres" type="Theme" id=4]
+[ext_resource path="res://healthbar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://light.png" type="Texture" id=5]
 [ext_resource path="res://scence.gd" type="Script" id=6]
 [ext_resource path="res://envi.tscn" type="PackedScene" id=7]
 [ext_resource path="res://BossRoom.gd" type="Script" id=8]
-
-[sub_resource type="StyleBoxFlat" id=7]
-bg_color = Color( 0.956863, 0.0431373, 0.8, 1 )
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color( 0.8, 0.8, 0.8, 0 )
-
-[sub_resource type="StyleBoxFlat" id=8]
-bg_color = Color( 0.6, 0.6, 0.619608, 0 )
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color( 0.996078, 0.988235, 0.988235, 1 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6, 28.75 )
@@ -58,18 +42,6 @@ script = ExtResource( 8 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 505, 511 )
-
-[node name="ProgressBar" type="ProgressBar" parent="Player"]
-margin_left = -503.0
-margin_top = -507.0
-margin_right = -155.0
-margin_bottom = -478.0
-theme = ExtResource( 4 )
-custom_colors/font_color = Color( 0.0431373, 0.764706, 0.956863, 1 )
-custom_styles/fg = SubResource( 7 )
-custom_styles/bg = SubResource( 8 )
-value = 50.0
-percent_visible = false
 
 [node name="StaticBody2D2" type="Area2D" parent="."]
 position = Vector2( 510, 554 )
@@ -150,5 +122,11 @@ rotation = 3.14159
 polygon = PoolVector2Array( -1, 2, -5, 419, 14, 437, 46, 440, 105, 378, 107, 49, 47, -18, 8, -20 )
 
 [node name="WorldEnvironment" parent="." instance=ExtResource( 7 )]
+
+[node name="ProgressBar" parent="." instance=ExtResource( 4 )]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 351.0
+margin_bottom = 32.0
 
 [connection signal="body_entered" from="StaticBody2D2" to="." method="_on_StaticBody2D2_body_entered"]

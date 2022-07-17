@@ -7,6 +7,8 @@ export var timer_cooldown = 0.1
 export var shot_duration = 0.1
 export(Vector2) var  mid_pos = Vector2(418,276);
 
+var scene = preload("res://projectile.tscn")
+
 var canshoot = true
 
 onready var parts = get_parent().get_node_or_null("Viewport/Particles2D")
@@ -35,22 +37,23 @@ func _physics_process(delta):
 	rotation_degrees += 90
 	
 
-func _process(delta):
+func _process(_delta):
 	if parts == null:
 		return
 	parts.process_material.set_shader_param("spawn_angle_base",rotation - deg2rad(90))
 
 func _input(event):
-	if parts == null:
-		return
 	if event is InputEventMouseButton:
 		if event.pressed and canshoot:
-			parts.emitting = true
+			var instance = scene.instance()
+			instance.player_target = false
+			instance.global_position = global_position
+			instance.angle = rotation- deg2rad(90)
+			get_parent().add_child(instance)
 			$Timer.start(shot_duration)
 
 
 func _on_Timer_timeout():
-	parts.emitting = false
 	$Timer2.start(timer_cooldown)
 
 
