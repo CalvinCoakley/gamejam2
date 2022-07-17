@@ -139,7 +139,6 @@ texture = ExtResource( 5 )
 [node name="Node2D" parent="." instance=ExtResource( 7 )]
 
 [node name="Sprite2" parent="Node2D" index="0"]
-visible = false
 position = Vector2( -347, -47 )
 texture = SubResource( 10 )
 

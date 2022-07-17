@@ -12,6 +12,7 @@ extents = Vector2( 31, 30.4985 )
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite2" type="Sprite" parent="."]
+visible = false
 position = Vector2( 512, 300 )
 texture = SubResource( 6 )
 
@@ -22,6 +23,7 @@ distancekeep = 100.0
 distancekeep2 = 200.0
 acceleration = 0.1
 friction = 0.1
+timer_cooldown = 1.0
 
 [node name="RayCast2D" type="RayCast2D" parent="Enemy"]
 rotation = 3.14159

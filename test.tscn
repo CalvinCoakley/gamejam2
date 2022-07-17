@@ -246,8 +246,5 @@ position = Vector2( 512, 300 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 8 )
-position = Vector2( 512, 300 )
+position = Vector2( 506, 302 )
 texture = SubResource( 9 )
-
-[connection signal="timeout" from="Player/Timer" to="Player" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Player/Timer2" to="Player" method="_on_Timer2_timeout"]
