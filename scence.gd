@@ -20,6 +20,7 @@ func _on_StaticBody2D_body_entered(_body):
 
 
 func _on_StaticBody2D2_body_entered(_body):
+	return
 	if len(get_tree().get_nodes_in_group("Enemies")) > 0:
 		return
 	if _body.name != "Player":
