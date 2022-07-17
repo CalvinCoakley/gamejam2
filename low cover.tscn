@@ -146,7 +146,29 @@ texture = SubResource( 10 )
 position = Vector2( 648, 339 )
 player = NodePath("../../Player")
 
+[node name="Node2D2" parent="." instance=ExtResource( 7 )]
+
+[node name="Sprite2" parent="Node2D2" index="0"]
+position = Vector2( -347, -47 )
+texture = SubResource( 10 )
+
+[node name="Enemy" parent="Node2D2" index="1"]
+position = Vector2( 904, 174 )
+player = NodePath("../../Player")
+
+[node name="Node2D3" parent="." instance=ExtResource( 7 )]
+
+[node name="Sprite2" parent="Node2D3" index="0"]
+position = Vector2( -347, -47 )
+texture = SubResource( 10 )
+
+[node name="Enemy" parent="Node2D3" index="1"]
+position = Vector2( 901, 508 )
+player = NodePath("../../Player")
+
 [connection signal="body_entered" from="StaticBody2D" to="." method="_on_StaticBody2D_body_entered"]
 [connection signal="body_entered" from="StaticBody2D2" to="." method="_on_StaticBody2D2_body_entered"]
 
 [editable path="Node2D"]
+[editable path="Node2D2"]
+[editable path="Node2D3"]

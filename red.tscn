@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://corridor.png" type="Texture" id=1]
 [ext_resource path="res://scence.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://light.png" type="Texture" id=5]
 [ext_resource path="res://envi.tscn" type="PackedScene" id=6]
 [ext_resource path="res://healthbar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 28.75 )
@@ -31,6 +32,9 @@ polygon = PoolVector2Array( 158, 107, 246, 106, 247, 495, 166, 491 )
 
 [sub_resource type="OccluderPolygon2D" id=8]
 polygon = PoolVector2Array( 986, 408, 729, 408, 725, 493, 639, 485, 639, 100, 723, 103, 724, 180, 992, 180 )
+
+[sub_resource type="ViewportTexture" id=9]
+viewport_path = NodePath("Viewport")
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
@@ -145,6 +149,37 @@ margin_top = 3.0
 margin_right = 351.0
 margin_bottom = 32.0
 
+[node name="Node2D" parent="." instance=ExtResource( 8 )]
+
+[node name="Sprite2" parent="Node2D" index="0"]
+texture = SubResource( 9 )
+
+[node name="Enemy" parent="Node2D" index="1"]
+position = Vector2( 588, 510 )
+player = NodePath("../../Player")
+
+[node name="Node2D2" parent="." instance=ExtResource( 8 )]
+
+[node name="Sprite2" parent="Node2D2" index="0"]
+texture = SubResource( 9 )
+
+[node name="Enemy" parent="Node2D2" index="1"]
+position = Vector2( 549, 190 )
+player = NodePath("../../Player")
+
+[node name="Node2D3" parent="." instance=ExtResource( 8 )]
+
+[node name="Sprite2" parent="Node2D3" index="0"]
+texture = SubResource( 9 )
+
+[node name="Enemy" parent="Node2D3" index="1"]
+position = Vector2( 329, 507 )
+player = NodePath("../../Player")
+
 [connection signal="area_entered" from="StaticBody2D" to="." method="_on_StaticBody2D_area_entered"]
 [connection signal="body_entered" from="StaticBody2D" to="." method="_on_StaticBody2D_body_entered"]
 [connection signal="body_entered" from="StaticBody2D2" to="." method="_on_StaticBody2D2_body_entered"]
+
+[editable path="Node2D"]
+[editable path="Node2D2"]
+[editable path="Node2D3"]

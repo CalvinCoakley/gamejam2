@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://biggest_door_please_i_beg_you_help_im_locked_in_lottaaxols_basement.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scence.gd" type="Script" id=5]
 [ext_resource path="res://light.png" type="Texture" id=6]
 [ext_resource path="res://envi.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Charger.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 28.75 )
@@ -19,6 +20,9 @@ extents = Vector2( 508, 80 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 14, 139.5 )
+
+[sub_resource type="ViewportTexture" id=5]
+viewport_path = NodePath("Viewport")
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 5 )
@@ -101,5 +105,26 @@ margin_top = 3.0
 margin_right = 351.0
 margin_bottom = 32.0
 
+[node name="Node2D" parent="." instance=ExtResource( 8 )]
+
+[node name="Sprite2" parent="Node2D" index="0"]
+texture = SubResource( 5 )
+
+[node name="Enemy" parent="Node2D" index="1"]
+position = Vector2( 851, 238 )
+player = NodePath("../../Player")
+
+[node name="Node2D2" parent="." instance=ExtResource( 8 )]
+
+[node name="Sprite2" parent="Node2D2" index="0"]
+texture = SubResource( 5 )
+
+[node name="Enemy" parent="Node2D2" index="1"]
+position = Vector2( 711, 350 )
+player = NodePath("../../Player")
+
 [connection signal="body_entered" from="StaticBody2D" to="." method="_on_StaticBody2D_body_entered"]
 [connection signal="body_entered" from="StaticBody2D2" to="." method="_on_StaticBody2D2_body_entered"]
+
+[editable path="Node2D"]
+[editable path="Node2D2"]
