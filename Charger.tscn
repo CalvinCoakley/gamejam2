@@ -24,7 +24,7 @@ distancekeep2 = 200.0
 acceleration = 0.1
 friction = 0.1
 attack_type = 1
-health = 8
+health = 15
 timer_cooldown = 2.0
 
 [node name="RayCast2D" type="RayCast2D" parent="Enemy"]

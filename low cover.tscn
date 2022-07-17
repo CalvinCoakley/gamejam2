@@ -80,7 +80,6 @@ margin_bottom = 32.0
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 418, 276 )
-scale = Vector2( 0.989106, 1.15467 )
 timer_cooldown = 0.3
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
