@@ -2,14 +2,14 @@ extends Node2D
 
 export(Vector2) var entrance_pos
 
-func _on_StaticBody2D_area_entered(area):
-	var scene = Global.scene_names[Global.index + 1]
-	Global.goto_scene(scene)
+
 
 var playermove = 150
 
 func _on_StaticBody2D_body_entered(_body):
-	if len(get_tree().get_nodes_in_group("Enemies")) <= 0:
+	if len(get_tree().get_nodes_in_group("Enemies")) > 0:
+		return
+	if _body.name != "Player":
 		return
 	if Global.index == len(Global.scene_names)-1:
 		return
@@ -20,7 +20,9 @@ func _on_StaticBody2D_body_entered(_body):
 
 
 func _on_StaticBody2D2_body_entered(_body):
-	if len(get_tree().get_nodes_in_group("Enemies")) <= 0:
+	if len(get_tree().get_nodes_in_group("Enemies")) > 0:
+		return
+	if _body.name != "Player":
 		return
 	if Global.index == 0:
 		return
