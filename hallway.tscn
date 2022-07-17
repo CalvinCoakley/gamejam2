@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://biggest_door_please_i_beg_you_help_im_locked_in_lottaaxols_basement.png" type="Texture" id=2]
 [ext_resource path="res://hallway.png" type="Texture" id=3]
-[ext_resource path="res://theme.tres" type="Theme" id=4]
 [ext_resource path="res://scence.gd" type="Script" id=5]
 [ext_resource path="res://light.png" type="Texture" id=6]
 [ext_resource path="res://envi.tscn" type="PackedScene" id=7]
@@ -20,56 +19,42 @@ extents = Vector2( 508, 80 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 14, 139.5 )
 
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.956863, 0.0431373, 0.8, 1 )
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color( 0.8, 0.8, 0.8, 0 )
-
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.6, 0.6, 0.619608, 0 )
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color( 0.996078, 0.988235, 0.988235, 1 )
-
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 5 )
+entrance_pos = Vector2( 300, 298 )
+
+[node name="Hallway" type="Sprite" parent="."]
+position = Vector2( 509.5, 298 )
+scale = Vector2( 7.99219, 9.34375 )
+texture = ExtResource( 3 )
 
 [node name="StaticBody2D" type="Area2D" parent="."]
-position = Vector2( 1284, 1485 )
+position = Vector2( 984, 289 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
 modulate = Color( 0.996078, 0.996078, 0.996078, 1 )
-position = Vector2( -300, -1175 )
 scale = Vector2( 0.523811, 0.301074 )
 texture = ExtResource( 2 )
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -298, -1174.75 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="Area2D" parent="."]
-position = Vector2( 656, 1634 )
+position = Vector2( 37, 301 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D2"]
 modulate = Color( 0.976471, 0.988235, 0.988235, 1 )
-position = Vector2( -619, -1349 )
 scale = Vector2( 0.476191, 0.311828 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( -621, -1349 )
 shape = SubResource( 2 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
@@ -96,26 +81,6 @@ shape = SubResource( 4 )
 position = Vector2( 1008, 299 )
 shape = SubResource( 4 )
 
-[node name="Hallway" type="Sprite" parent="."]
-position = Vector2( 509.5, 298 )
-scale = Vector2( 7.99219, 9.34375 )
-texture = ExtResource( 3 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 102, 257 )
-
-[node name="ProgressBar" type="ProgressBar" parent="Player"]
-margin_left = -99.0
-margin_top = -255.0
-margin_right = 249.0
-margin_bottom = -226.0
-theme = ExtResource( 4 )
-custom_colors/font_color = Color( 0.0431373, 0.764706, 0.956863, 1 )
-custom_styles/fg = SubResource( 5 )
-custom_styles/bg = SubResource( 6 )
-value = 50.0
-percent_visible = false
-
 [node name="WorldEnvironment" parent="." instance=ExtResource( 7 )]
 
 [node name="Light2D" type="Light2D" parent="."]
@@ -125,3 +90,9 @@ texture = ExtResource( 6 )
 energy = 1.58
 mode = 2
 shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 511, 271 )
+
+[connection signal="body_entered" from="StaticBody2D" to="." method="_on_StaticBody2D_body_entered"]
+[connection signal="body_entered" from="StaticBody2D2" to="." method="_on_StaticBody2D2_body_entered"]

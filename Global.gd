@@ -1,7 +1,7 @@
 extends Node
 
 var current_scene = null
-var scene_names = ["red","green","blue","hallway","boss", "low cover", "chest"]
+var scene_names = ["red","green","hallway","boss","low cover"]
 var index = 0
 var player = Vector2.ZERO;
 
@@ -18,18 +18,18 @@ func shuffleList(list):
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
-	var basename = current_scene.filename
-	var remove1 = "res://"
-	var remove2 = ".tscn"
-	basename = basename.replace(remove1,"")
-	basename = basename.replace(remove2,"")
+	#var basename = current_scene.filename
+	#var remove1 = "res://"
+	#var remove2 = ".tscn"
+#	basename = basename.replace(remove1,"")
+	#basename = basename.replace(remove2,"")
 	randomize()
 	scene_names.shuffle()
-	scene_names.remove(scene_names.find(basename))
-	scene_names.insert(0,basename)
+	#scene_names.remove(scene_names.find(basename))
+	scene_names.insert(0,"blue")
 
 func goto_scene(path):
-	index = scene_names.find(path)
+	#index = scene_names.find(path)
 
 	call_deferred("_deferred_goto_scene", path)
 

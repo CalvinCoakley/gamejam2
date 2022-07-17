@@ -48,7 +48,7 @@ polygon = PoolVector2Array( -30.2379, 250.722, -57.2504, 258.68, -80.3905, 249.8
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 6 )
-entrance_pos = Vector2( 1124, 1902 )
+entrance_pos = Vector2( 510, 500 )
 
 [node name="BossRoom" type="Sprite" parent="."]
 position = Vector2( 511, 297.5 )
@@ -72,20 +72,18 @@ value = 50.0
 percent_visible = false
 
 [node name="StaticBody2D2" type="Area2D" parent="."]
-position = Vector2( 1124, 1902 )
+position = Vector2( 510, 554 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D2"]
 modulate = Color( 0.976471, 0.988235, 0.988235, 1 )
-position = Vector2( -619, -1349 )
 rotation = -1.5708
 scale = Vector2( 0.476191, 0.311828 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( -619, -1345 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
@@ -152,3 +150,5 @@ rotation = 3.14159
 polygon = PoolVector2Array( -1, 2, -5, 419, 14, 437, 46, 440, 105, 378, 107, 49, 47, -18, 8, -20 )
 
 [node name="WorldEnvironment" parent="." instance=ExtResource( 7 )]
+
+[connection signal="body_entered" from="StaticBody2D2" to="." method="_on_StaticBody2D2_body_entered"]

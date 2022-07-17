@@ -5,7 +5,7 @@ func _ready():
 
 var boss_music = load("res://boss song.mp3")
 var idk_music = load("res://idk.wav")
-var menu_music = load("res://menu.ogg")
+var menu_music = load("res://menu.mp3")
 
 func play_boss():
 	$AudioStreamPlayer.stream = boss_music

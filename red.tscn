@@ -33,6 +33,7 @@ polygon = PoolVector2Array( 986, 408, 729, 408, 725, 493, 639, 485, 639, 100, 72
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
+entrance_pos = Vector2( 160, 286 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 511, 303 )
@@ -43,33 +44,29 @@ texture = ExtResource( 1 )
 position = Vector2( 602, 345 )
 
 [node name="StaticBody2D" type="Area2D" parent="."]
-position = Vector2( 1285, 1653 )
+position = Vector2( 986, 491 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
 modulate = Color( 0.996078, 0.996078, 0.996078, 1 )
-position = Vector2( -300, -1175 )
 scale = Vector2( 0.523811, 0.301074 )
 texture = ExtResource( 4 )
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -298, -1174.75 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D2" type="Area2D" parent="."]
-position = Vector2( 657, 1573 )
+position = Vector2( 40, 288 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D2"]
 modulate = Color( 0.976471, 0.988235, 0.988235, 1 )
-position = Vector2( -619, -1349 )
 scale = Vector2( 0.476191, 0.311828 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( -621, -1349 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]

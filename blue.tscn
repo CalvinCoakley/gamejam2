@@ -34,6 +34,7 @@ extents = Vector2( 510.5, 14.5 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
+entrance_pos = Vector2( 512, 300 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 513.5, 300.5 )
@@ -41,7 +42,7 @@ scale = Vector2( 16.0156, 9.32813 )
 texture = ExtResource( 4 )
 
 [node name="StaticBody2D" type="Area2D" parent="."]
-position = Vector2( 948, 301 )
+position = Vector2( 938, 300 )
 __meta__ = {
 "_edit_group_": true
 }
