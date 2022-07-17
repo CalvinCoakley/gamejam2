@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scence.gd" type="Script" id=1]
-[ext_resource path="res://plz.gd" type="Script" id=2]
 
-[sub_resource type="Shader" id=24]
+[sub_resource type="Shader" id=13]
 code = "shader_type canvas_item;
 
 uniform sampler2D color;
@@ -18,28 +17,28 @@ void fragment()
 }"
 
 [sub_resource type="Gradient" id=18]
-colors = PoolColorArray( 0, 0, 0, 1, 0.0898438, 0.0898438, 0.0898438, 1 )
+colors = PoolColorArray( 1, 0.753906, 0.015625, 1, 0.332031, 0.269613, 0.228271, 1 )
 
-[sub_resource type="GradientTexture" id=25]
+[sub_resource type="GradientTexture" id=14]
 gradient = SubResource( 18 )
 
 [sub_resource type="OpenSimplexNoise" id=19]
 
-[sub_resource type="NoiseTexture" id=26]
+[sub_resource type="NoiseTexture" id=15]
 noise = SubResource( 19 )
 
 [sub_resource type="OpenSimplexNoise" id=20]
 
-[sub_resource type="NoiseTexture" id=27]
+[sub_resource type="NoiseTexture" id=16]
 noise = SubResource( 20 )
 
 [sub_resource type="ShaderMaterial" id=21]
-shader = SubResource( 24 )
-shader_param/color = SubResource( 25 )
-shader_param/noise = SubResource( 26 )
-shader_param/noise2 = SubResource( 27 )
+shader = SubResource( 13 )
+shader_param/color = SubResource( 14 )
+shader_param/noise = SubResource( 15 )
+shader_param/noise2 = SubResource( 16 )
 
-[sub_resource type="Shader" id=28]
+[sub_resource type="Shader" id=17]
 code = "shader_type canvas_item;
 
 uniform vec2 fill_tex_offset = vec2(0.0);
@@ -74,7 +73,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=22]
-shader = SubResource( 28 )
+shader = SubResource( 17 )
 shader_param/fill_tex_offset = Vector2( 0, 0 )
 shader_param/fill_tex_scale = Vector2( 1, 1 )
 shader_param/base_color = Color( 1, 1, 1, 1 )
@@ -86,7 +85,7 @@ shader_param/frequency = 20.0
 shader_param/speed = 5.0
 
 [sub_resource type="ShaderMaterial" id=23]
-shader = SubResource( 28 )
+shader = SubResource( 17 )
 shader_param/fill_tex_offset = Vector2( 0, 0 )
 shader_param/fill_tex_scale = Vector2( 1, 1 )
 shader_param/base_color = Color( 1, 1, 1, 1 )
@@ -100,8 +99,8 @@ shader_param/speed = 10.0
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( -503, 0 )
 script = ExtResource( 1 )
+entrance_pos = Vector2( 1, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 21 )
@@ -118,15 +117,8 @@ margin_top = -325.0
 margin_right = -2032.0
 margin_bottom = 675.0
 rect_scale = Vector2( 4, 4 )
-text = "Restart Game"
+text = "YAY!"
 align = 1
-
-[node name="start game" type="Button" parent="."]
-margin_left = 279.0
-margin_top = 294.0
-margin_right = 788.0
-margin_bottom = 314.0
-flat = true
 
 [node name="Label2" type="Label" parent="."]
 material = SubResource( 23 )
@@ -138,10 +130,5 @@ margin_top = -530.0
 margin_right = -2024.0
 margin_bottom = 470.0
 rect_scale = Vector2( 4, 4 )
-text = "YOU HAVE DIED"
+text = "YOU HAVE WON!"
 align = 1
-
-[node name="Node" type="Node" parent="."]
-script = ExtResource( 2 )
-
-[connection signal="pressed" from="start game" to="." method="_on_start_game_pressed"]

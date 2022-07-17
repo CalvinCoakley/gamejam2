@@ -1,5 +1,5 @@
 extends Node
-onready var newell = get_parent().get_node("Enemy")
+onready var newell = get_parent().get_node_or_null("Enemy")
 func change_to_charger():
 	newell.distancekeep = 100
 	newell.distancekeep2 = 200

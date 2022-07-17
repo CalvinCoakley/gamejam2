@@ -13,6 +13,7 @@ export(int) var health = 4
 export var timer_cooldown = 0.1
 export var shot_duration = 0.1
 export(NodePath) var player
+export(bool) var newell = false
 
 
 var angle = 0
@@ -22,7 +23,10 @@ var velocity := Vector2.ZERO
 
 func _physics_process(delta):
 	if health <= 0:
-		queue_free()
+		if newell:
+			Global.goto_scene("win")
+			#get_node("Node").queue_free()
+		#queue_free()
 	var Player = get_node(player)
 	if seesplayer: #hunting
 		look_at(Player.global_position)

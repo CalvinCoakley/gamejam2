@@ -141,6 +141,7 @@ texture = SubResource( 11 )
 [node name="Enemy" parent="Node2D" index="1"]
 position = Vector2( 540, 306 )
 player = NodePath("../../Player")
+newell = true
 
 [connection signal="body_entered" from="StaticBody2D2" to="." method="_on_StaticBody2D2_body_entered"]
 
